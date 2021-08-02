@@ -60,14 +60,20 @@ export default function SignIn() {
 
           <fieldset className='gender'>
             <legend>Sexo</legend>
-            <label for='masculino'>Masculino</label>
-            <input type='radio' name='group' id='masculino'/>
+            <div className="options">
+              <label for='masculino'>Masculino</label>
+              <input type='radio' name='group' id='masculino'/>
+            </div>
             
-            <label for='feminino'>Feminino</label>
-            <input type='radio' name='group' id='feminino'/>
+            <div className="options">
+              <label for='feminino'>Feminino</label>
+              <input type='radio' name='group' id='feminino'/>
+            </div>
 
-            <label for='outro'>Outro</label>
-            <input type='radio' name='group' id='outro'/>
+            <div className="options">
+              <label for='outro'>Outro</label>
+              <input type='radio' name='group' id='outro'/>
+            </div>
           </fieldset>
 
           <button type='submit' className='buttons'>Cadastrar</button>

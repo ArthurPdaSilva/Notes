@@ -1,3 +1,19 @@
+/* Fieldset Gender */
+fieldset.gender{
+    display: flex;
+    align-items: center;
+    padding: var(--padding);
+}
+
+fieldset.gender div.options{
+    display: flex;
+    align-items: center;
+    gap: var(--gaps);
+    border: var(--border);
+    margin-right: var(--margin);
+    padding: var(--padding);
+}
+
 /* Group Gender */
 label[for='masculino'], label[for='feminino'], label[for='outro']{
     cursor: pointer;

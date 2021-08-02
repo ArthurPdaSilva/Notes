@@ -9,11 +9,12 @@
   --corBranca: white;
   --fontFamily: 'Courier New', Courier, monospace;
   --fontSize: 16px;
-  --border: 1px solid;
+  --border: 1px solid rgb(117, 117, 117);
   --borderRadius: 10px;
   --shadow: 2px 2px 3px rgba(0, 0, 0, 0.657);
   --padding: 10px;
   --gaps: 10px;
+  --margin: 10px;
 }
 
 /* All */
