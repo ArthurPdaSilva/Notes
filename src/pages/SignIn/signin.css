@@ -49,7 +49,6 @@ div.login div.loginContainer form div.groupInput input{
     border: none;
     min-width: 20vw;
     background-color: var(--corSecundaria);
-    /* border-bottom: var(--border) var(--corPrincipal); */
     padding: var(--padding);
     font-size: 1rem;
 }

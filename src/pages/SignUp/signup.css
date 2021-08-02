@@ -9,7 +9,6 @@ fieldset.gender div.options{
     display: flex;
     align-items: center;
     gap: var(--gaps);
-    border: var(--border);
     margin-right: var(--margin);
     padding: var(--padding);
 }
