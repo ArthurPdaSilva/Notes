@@ -1,0 +1,4 @@
+/* Group Gender */
+label[for='masculino'], label[for='feminino'], label[for='outro']{
+    cursor: pointer;
+}

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import {FiUser, FiLock, FiEye, FiEyeOff} from 'react-icons/fi';
+import {FiLock, FiEye, FiEyeOff, FiMail} from 'react-icons/fi';
 import './signin.css';
 
 export default function SignIn() {
@@ -27,7 +27,7 @@ export default function SignIn() {
         <form onSubmit={() => {}}>
           <div className="groupInput">
             <label>
-              <FiUser color='white' size={24}/>
+              <FiMail color='white' size={24}/>
             </label>
             <input type='email' placeholder='user@gmail.com' value={email} onChange={(e) => setEmail(e.target.value)} required/>
           </div>
