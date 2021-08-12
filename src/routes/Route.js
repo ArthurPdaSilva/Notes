@@ -1,16 +1,17 @@
+import {useContext} from 'react';
 import { Route, Redirect } from "react-router";
+import { AuthContext } from "../contexts/auth";
 
 export default function RouterWrapper({
     component: Component,
     isPrivate,
     ...rest
 }){
-    const signed = false;
-    const loading = false;
+    const {signed, loading} = useContext(AuthContext);
 
-    if(loading){
-        <div>Carregando</div>
-    }
+    // if(loading){
+        // <div>Carregando</div>
+    // }
 
     // Se ele não ta logado e tenta acessar uma página privada
     if(!signed && isPrivate){

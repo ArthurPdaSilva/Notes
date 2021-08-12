@@ -1,12 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
+import {AuthContext} from '../../contexts/auth';
 import {FiLock, FiEye, FiEyeOff, FiMail} from 'react-icons/fi';
 import './signin.css';
 
 export default function SignIn() {
 
- const [email, setEmail] = useState('')
+//  Contexts
+ const {login} = useContext(AuthContext);
 
+  const [email, setEmail] = useState('')
+  
  //  Passwords
  const [password, setPassword] = useState('');
  const [typePassword, setTypePassword] = useState('password')
@@ -19,12 +23,20 @@ export default function SignIn() {
    }
  }
 
+ function signIn(e){
+  e.preventDefault();
+    
+  if(email !== '' && password !== ''){
+    signIn(email, password)
+  }
+ }
+
  return (
    <div className='login'>
       <div className="loginContainer">
         <h1>Login</h1>
         
-        <form onSubmit={() => {}}>
+        <form onSubmit={signIn}>
           <div className="groupInput">
             <label>
               <FiMail color='white' size={24}/>

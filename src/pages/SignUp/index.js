@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import {FiUser, FiLock, FiEye, FiEyeOff, FiMail, FiMoreVertical} from 'react-icons/fi';
+import {AuthContext} from '../../contexts/auth';
 import './signup.css';
 
 export default function SignIn() {
@@ -14,6 +15,9 @@ export default function SignIn() {
  const [password, setPassword] = useState('');
  const [typePassword, setTypePassword] = useState('password');
 
+//  Contexts
+ const {signUp} = useContext(AuthContext);
+
  function handlePasswordVisible(){
    if(typePassword === 'password'){
      setTypePassword('text');
@@ -22,12 +26,19 @@ export default function SignIn() {
    }
  }
 
+ function signUpUser(e){
+  e.preventDefault();
+  if(firstName !== '' && lastName !== '' && email !== '' && password !== '' && gender !== ''){
+    signUp(email, password, `${firstName} ${lastName}`, gender);
+  }
+ }
+
  return (
    <div className='login'>
       <div className="loginContainer">
         <h1>SignUp</h1>
         
-        <form onSubmit={() => {}}>
+        <form onSubmit={signUpUser}>
           <div className="groupInput">
             <label>
               <FiUser color='white' size={24}/>
