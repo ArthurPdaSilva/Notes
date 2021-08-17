@@ -1,5 +1,6 @@
 /* Variables */
 :root{
+  --corHeader: rgb(15, 15, 17);
   --corPrincipal: #2B303A;
   --corSecundaria: #EBF2FA;
   --corTerciaria: #0C7C59;

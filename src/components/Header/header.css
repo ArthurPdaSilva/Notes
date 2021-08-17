@@ -1,0 +1,26 @@
+/* Cabeçalho */
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: calc(var(--padding) + 5px);
+    background-color: var(--corHeader);
+}
+
+header .user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--corBranca);
+    font-size: var(--fontSize);
+    gap: var(--gaps);
+}
+
+header h1{
+    color: var(--corBranca);
+}
+
+header svg{
+    cursor: pointer;
+}

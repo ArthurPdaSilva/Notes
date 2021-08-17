@@ -1,14 +1,14 @@
 /* Main */
 main{
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    min-height: 100vh;
+    padding: var(--padding);
+    min-height: 80vh;
     width: 100%;
 }
 
-/* Titles */
-main > h1{
+/* Cabeçalho em main */
+main div.top{
+    font-size: 1.2rem;
     color: var(--corBranca);
 }
