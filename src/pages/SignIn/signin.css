@@ -65,6 +65,10 @@ div.login div.loginContainer form div.groupInput label{
 }
 
 /* Buttons */
+button.buttonPassword{
+    padding: var(--padding);
+}
+
 button.buttons, a.buttons{
     color: var(--corBranca);
     background-color: var(--corPrincipal);

@@ -1,3 +1,11 @@
+/* All Main */
+div.all{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gaps);
+    width: 100%;
+}
+
 /* Main */
 main{
     display: flex;
@@ -11,4 +19,71 @@ main{
 main div.top{
     font-size: 1.2rem;
     color: var(--corBranca);
+}
+
+/* To-do Container */
+main div.notes{
+    display: flex;
+    width: 100%;
+    padding: var(--padding);
+    margin: calc(var(--margin) + 10px) 10px 0 0;
+}
+
+/* To-do itens */
+main div.container{
+    background-color: var(--corSecundaria);
+    padding: var(--padding);
+    border-radius: var(--borderRadius);
+    min-width: 40vh;
+}
+
+/* To-do top*/
+main div.topContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: calc(var(--margin));
+}
+
+/* To-do top*/
+main div.topContainer h3, main div.topContainer svg{
+    color: var(--corPrincipal);
+}
+
+/* To-do list */
+main div.container ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--gaps) - 5px);
+    width: 100%;
+}
+
+main div.container ul li{
+    background-color: var(--corBranca);
+    box-shadow: var(--shadow);
+    text-align: center;
+    width: 100%;
+}
+
+/* Button List */
+
+button.buttonList{
+    background-color: var(--corTerciaria);
+    color: var(--corBranca);
+    padding: var(--padding);
+    margin-top: var(--margin);
+    font-size: calc(var(--fontSize) - 2px);
+    font-weight: bold;
+}
+
+main div.container button.buttonList{
+    width: 100%;
+}
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: var(--padding);
 }

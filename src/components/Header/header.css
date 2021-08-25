@@ -14,13 +14,12 @@ header .user{
     justify-content: space-between;
     color: var(--corBranca);
     font-size: var(--fontSize);
+    font-style: italic;
     gap: var(--gaps);
 }
 
 header h1{
     color: var(--corBranca);
+    font-style: italic;
 }
 
-header svg{
-    cursor: pointer;
-}

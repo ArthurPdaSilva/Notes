@@ -3,7 +3,7 @@ import React from 'react';
 export default function Footer() {
  return (
    <footer>
-       <button>Adicionar Nova lista</button>
+       <button onClick={() => {}} className='buttonList'>Adicionar nova lista</button>
    </footer>
  );
 }

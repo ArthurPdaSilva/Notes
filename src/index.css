@@ -1,14 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+
 /* Variables */
 :root{
   --corHeader: rgb(15, 15, 17);
   --corPrincipal: #2B303A;
-  --corSecundaria: #EBF2FA;
+  --corSecundaria: #cfd3d8;
   --corTerciaria: #0C7C59;
   --corQuaternaria: #D64933;
   --corQuinquenaria: #F18F01;
   --corPadrao: black;
   --corBranca: white;
-  --fontFamily: 'Courier New', Courier, monospace;
+  --fontFamily: 'Roboto', sans-serif;
   --fontSize: 16px;
   --border: 1px solid rgb(117, 117, 117);
   --borderRadius: 10px;
@@ -29,6 +31,10 @@
   outline: none;
 }
 
+svg{
+  cursor: pointer;
+}
+
 a{
   color: var(--corBranca);
   text-decoration: none;
@@ -40,6 +46,10 @@ a, button{
 
 button{
   border: none;
+}
+
+ul{
+  list-style: none;
 }
 
 body{

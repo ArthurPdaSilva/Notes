@@ -65,7 +65,7 @@ export default function SignIn() {
               <FiLock color='white' size={24}/>
             </label>
             <input type={typePassword} placeholder='*******' value={password} onChange={(e) => setPassword(e.target.value)} minLength={8} required/>
-            <button onClick={handlePasswordVisible} type='button'>
+            <button onClick={handlePasswordVisible} type='button' className='buttonPassword'>
               {typePassword === 'text' ? <FiEye color='black' size={24}/> : <FiEyeOff color='black' size={24}/>}  
             </button>
           </div>
