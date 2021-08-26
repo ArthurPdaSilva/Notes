@@ -3,6 +3,7 @@ import { FiSettings } from 'react-icons/fi';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import {AuthContext} from '../../contexts/auth';
+import Modal from '../../components/Modal';
 import './home.css';
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
         <div className='top'>
           <h2>Anotações</h2>
           <small>Crie to-do lists ou anotações convencionais</small>
-        </div>
+        </div>  
         <div className='notes'>
           <div className="container">
             <div className="topContainer">
@@ -35,6 +36,7 @@ export default function Home() {
         {/* <button onClick={signOut}>Sair</button> */}
      </main>
      <Footer/>
+     <Modal/>
    </div>
  );
 }
