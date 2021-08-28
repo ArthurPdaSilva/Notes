@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { FiSettings } from 'react-icons/fi';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -7,6 +7,8 @@ import Modal from '../../components/Modal';
 import './home.css';
 
 export default function Home() {
+  
+  const [modal, setModal] = useState(false);
   const {signOut} = useContext(AuthContext);
 
   return (
@@ -30,13 +32,15 @@ export default function Home() {
               <li>Teste</li>
               <li>Teste</li>
             </ul>
-            <button onClick={() => {}} className='buttonList'>Adicionar novo item</button>
+            <button className='buttonList'>Adicionar novo item</button>
           </div>
         </div>
         {/* <button onClick={signOut}>Sair</button> */}
      </main>
-     <Footer/>
-     <Modal/>
+     <Footer modal={modal} setModal={setModal}/>  
+     {modal && (
+       <Modal modal={modal} setModal={setModal}/>
+     )}
    </div>
  );
 }

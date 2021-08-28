@@ -1,0 +1,31 @@
+/* Modal */
+div.modalContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.438);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+}
+
+div.modal{
+    background-color: var(--corBranca);
+    border-radius: var(--borderRadius);
+    padding: var(--padding);
+    box-shadow: var(--shadow);
+    min-height: 60vh;
+}
+
+div.modal div.itensTop{
+    display: flex;
+    color: var(--corPrincipal);
+}
+
+div.modal div.listaAdd{
+    display: flex;
+    flex-direction: column;
+}

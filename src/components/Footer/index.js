@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Footer() {
+export default function Footer({modal, setModal}) {
  return (
    <footer>
-       <button onClick={() => {}} className='buttonList'>Adicionar nova lista</button>
+      <button onClick={() => {setModal(!modal)}} className='buttonList'>Adicionar nova lista</button>
    </footer>
  );
 }
