@@ -11,7 +11,7 @@ main{
     display: flex;
     flex-direction: column;
     padding: var(--padding);
-    min-height: 75vh;
+    min-height: 70vh;
     width: 100%;
 }
 

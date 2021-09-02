@@ -1,0 +1,15 @@
+/* Error page */
+
+div.errorContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+div.errorContainer p{
+    text-align: center;
+    width: 40vw;
+}

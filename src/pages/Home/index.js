@@ -1,15 +1,13 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import { FiSettings } from 'react-icons/fi';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import {AuthContext} from '../../contexts/auth';
 import Modal from '../../components/Modal';
 import './home.css';
 
 export default function Home() {
   
   const [modal, setModal] = useState(false);
-  const {signOut} = useContext(AuthContext);
 
   return (
    <div className="all">
@@ -35,7 +33,6 @@ export default function Home() {
             <button className='buttonList'>Adicionar novo item</button>
           </div>
         </div>
-        {/* <button onClick={signOut}>Sair</button> */}
      </main>
      <Footer modal={modal} setModal={setModal}/>  
      {modal && (
