@@ -9,7 +9,6 @@ import Home from '../pages/Home';
 import Perfil from "../pages/Perfil";
 import Error from '../pages/Error';
 
-
 export default function Routes(){
     return(
         <Switch>

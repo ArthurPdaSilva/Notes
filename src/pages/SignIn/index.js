@@ -6,12 +6,8 @@ import './signin.css';
 
 export default function SignIn() {
 
-//  Contexts
  const {login} = useContext(AuthContext);
-
-  const [email, setEmail] = useState('')
-  
- //  Passwords
+ const [email, setEmail] = useState('')
  const [password, setPassword] = useState('');
  const [typePassword, setTypePassword] = useState('password')
 
@@ -27,7 +23,7 @@ export default function SignIn() {
   e.preventDefault();
     
   if(email !== '' && password !== ''){
-    signIn(email, password)
+    login(email, password)
   }
  }
 

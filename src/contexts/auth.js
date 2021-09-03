@@ -5,9 +5,10 @@ import firebase from '../services/firebaseConnection';
 export const AuthContext = createContext({});
 
 export default function AuthProvider({children}){
- const [user, setUser] = useState(null);
  
- //  loading
+ const [user, setUser] = useState(null);
+
+ //  loadings
  const [loading, setLoading] = useState(true);
  const [loadingAuth, setLoadingAuth] = useState(false);
 
