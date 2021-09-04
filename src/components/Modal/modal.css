@@ -63,3 +63,15 @@ div.modal button.plusButton{
     background-color: var(--corPrincipal);
     padding: calc(var(--padding) - 4.5px);
 }
+
+/* Values of list*/
+li.listaValores{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+li.listaValores span{
+    width: 80%;
+    max-width: 80%;
+}

@@ -14,6 +14,17 @@ export default function Modal({modal, setModal}) {
     setItem('');
   }
 
+  async function handleDone(){
+    if(nameList === '' || list === ''){
+      alert('Preencha todos os campos')
+    }else{
+      await firebase.firestore().collection('list').add({
+        nameList: nameList,
+        itens: list
+      })
+    }
+  }
+
  return (
   <div className='modalContainer'>
     <div className='modal'>
@@ -32,18 +43,18 @@ export default function Modal({modal, setModal}) {
         <ul>
           {list.map((item) => {
             return(
-              <li key={item} className='listaValores'>
-                <span>{item}</span>
-                <FiX color='#2B303A' size={20} onClick={() => {
-                  let index = list.indexOf(item)
-                  list.splice(index, 1)
-                  setList(list)
-                }}/>
-              </li>
+              <ul>
+                <li key={item} id={item} className='listaValores'>
+                  <span>{item}</span>
+                  <FiX color='#2B303A' size={20} onClick={() => {
+                    setList(list.filter(el => el !== item))
+                  }}/>
+                </li>
+              </ul>
             )
           })}
         </ul>
-        <button className='buttonList'>Concluido</button>
+        <button className='buttonList' onClick={handleDone}>Concluido</button>
       </div>
     </div>
   </div>
