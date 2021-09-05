@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export default function Header() {
 
   const [displayMenu, setDisplayMenu] = useState(false);
-  const {signOut} = useContext(AuthContext);  
+  const {user, signOut} = useContext(AuthContext);  
 
   return (
     <header>
@@ -33,7 +33,7 @@ export default function Header() {
               </ul>
             }
           </li>
-          <li>@User</li>
+          <li>@{user.name}</li>
           <li><FiUser color='#EBF2FA' size={30}/></li>
         </ul> 
         

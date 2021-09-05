@@ -38,7 +38,8 @@ export default function AuthProvider({children}){
             name: fullName,
             avatarUrl: null, 
             email: email,
-            gender: gender
+            gender: gender,
+            uid: uid
         }).then(() => {
             let data = {
                 uid: uid,
@@ -53,8 +54,8 @@ export default function AuthProvider({children}){
             setLoadingAuth(false);
             // Salvando o user no storage
             storageUser(data);
-
             alert('Bem Vindo')
+
         }).catch((error) => {
             console.log(error);
             setLoadingAuth(false);
@@ -83,6 +84,7 @@ async function login(email, password){
         setLoadingAuth(false);
         // Salvando o user no storage
         storageUser(data);
+        alert('Bem Vindo')
 
     }).catch((error) => {
         console.log(error);

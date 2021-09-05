@@ -24,6 +24,8 @@ main div.top{
 /* To-do Container */
 main div.notes{
     display: flex;
+    gap: var(--gaps);
+    flex-wrap: wrap;
     width: 100%;
     padding: var(--padding);
     margin: calc(var(--margin) + 10px) 10px 0 0;
