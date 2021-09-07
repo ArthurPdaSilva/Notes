@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react';
-import { FiSettings } from 'react-icons/fi';
+import { FiPlus, FiSettings } from 'react-icons/fi';
 import { AuthContext } from '../../contexts/auth';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -11,11 +11,12 @@ export default function Home() {
   
   const [modal, setModal] = useState(false);
   const [lista, setLista] = useState([]);
-  const {user} = useContext(AuthContext)
+  const [newItem, setNewItem] = useState('');
+  const {user} = useContext(AuthContext);
 
   useEffect(() => {
     async function loadNotes(){
-      await firebase.firestore().collection('list').get().then((snapshot) => {
+      await firebase.firestore().collection('lists').get().then((snapshot) => {
         updateState(snapshot)
       })
     }
@@ -37,16 +38,29 @@ export default function Home() {
 
   }
 
+  async function addItem(idName){
+    let listaItens = lista.filter((item) => item.nameList === idName)
+    let values = listaItens.map((el) => el.itens)
+    values[0].push(newItem)
+
+    await firebase.firestore().collection('lists').doc(idName).update({
+      itens: values[0]
+    })
+    await firebase.firestore().collection('lists').get().then((snapshot) => {
+      updateState(snapshot)
+    })  
+  }
+
   return (
    <div className="all">
      <Header/>
      <main>
         <div className='top'>
           <h2>Anotações</h2>
-          <small>Crie to-do lists ou anotações convencionais</small>
+          <small>Crie to-do lists ou anotações convencionais / Não faça listas com nomes repetidos!</small>
         </div>  
         <div className='notes'>
-          {lista.map((item) => {
+          {lista !== [] && lista.map((item) => {
             return(
               <div key={item.nameList} className="container">
                 
@@ -62,8 +76,9 @@ export default function Home() {
                     )
                   })}
                 </ul>
-
-                <button className='buttonList'>Adicionar novo item</button>
+                <input type='text' value={newItem} onChange={(e) => setNewItem(e.target.value)}/>
+                {/* <button className='plusButton' onClick={() => {}}><FiPlus color='black' size={30}/></button> */}
+                <button className='buttonList' onClick={() => addItem(item.nameList)}>Adicionar novo item</button>
               </div>)
           })}     
         </div>

@@ -61,13 +61,18 @@ main div.container ul{
     width: 100%;
 }
 
-main div.container ul li{
+main div.container ul li, main div.container > input{
     background-color: var(--corBranca);
     box-shadow: var(--shadow);
     border-radius: calc(var(--borderRadius) - 5px);
     padding: calc(var(--padding) - 5px);
     text-align: center;
     width: 100%;
+}
+
+main div.container > input{
+    border: none;
+    margin-top: calc(var(--margin) - 5px);
 }
 
 /* Button List */

@@ -23,9 +23,7 @@ export default function Modal({modal, setModal}) {
       alert('Preencha todos os campos');
       return;
     }else{
-      // Get user id from collection users
-      // const userUid = await firebase.firestore().collection('users').doc(user.uid).get()
-      await firebase.firestore().collection('list').add({
+      await firebase.firestore().collection('lists').doc(nameList).set({
         idUser: user.uid,
         nameList: nameList,
         itens: list,
