@@ -61,7 +61,7 @@ main div.container ul{
     width: 100%;
 }
 
-main div.container ul li, main div.container > input{
+main div.container ul li{
     background-color: var(--corBranca);
     box-shadow: var(--shadow);
     border-radius: calc(var(--borderRadius) - 5px);
@@ -70,13 +70,35 @@ main div.container ul li, main div.container > input{
     width: 100%;
 }
 
-main div.container > input{
+/* Visible input */
+main div.container div.add{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+
+main div.container  div.add > input{
     border: none;
+    flex: 1;
+    background-color: var(--corBranca);
+    box-shadow: var(--shadow);
+    border-top-left-radius: calc(var(--borderRadius) - 5px);
+    border-bottom-left-radius: calc(var(--borderRadius) - 5px);
+    padding: calc(var(--padding) - 5px);
+    text-align: center;
     margin-top: calc(var(--margin) - 5px);
 }
 
-/* Button List */
+main div.container  div.add > svg{
+    background-color: var(--corPrincipal);
+    margin-top: calc(var(--margin) - 5px);
+    border-top-right-radius: calc(var(--borderRadius) - 5px);
+    border-bottom-right-radius: calc(var(--borderRadius) - 5px);
 
+}
+
+/* Button List */
 button.buttonList{
     background-color: var(--corTerciaria);
     color: var(--corBranca);
@@ -90,6 +112,7 @@ main div.container button.buttonList{
     width: 100%;
 }
 
+/* Rodapé */
 footer{
     display: flex;
     align-items: center;

@@ -11,9 +11,11 @@ export default function Home() {
   
   const [modal, setModal] = useState(false);
   const [lista, setLista] = useState([]);
+  const [visibleItem, setVisibleItem] = useState(true);
   const [newItem, setNewItem] = useState('');
   const {user} = useContext(AuthContext);
 
+  // Pegando as to-do lists
   useEffect(() => {
     async function loadNotes(){
       await firebase.firestore().collection('lists').get().then((snapshot) => {
@@ -38,6 +40,7 @@ export default function Home() {
 
   }
 
+  // Adicionando itens nas listas
   async function addItem(idName){
     let listaItens = lista.filter((item) => item.nameList === idName)
     let values = listaItens.map((el) => el.itens)
@@ -49,6 +52,9 @@ export default function Home() {
     await firebase.firestore().collection('lists').get().then((snapshot) => {
       updateState(snapshot)
     })  
+
+    setNewItem('');
+    setVisibleItem(!visibleItem)
   }
 
   return (
@@ -76,9 +82,13 @@ export default function Home() {
                     )
                   })}
                 </ul>
-                <input type='text' value={newItem} onChange={(e) => setNewItem(e.target.value)}/>
-                {/* <button className='plusButton' onClick={() => {}}><FiPlus color='black' size={30}/></button> */}
-                <button className='buttonList' onClick={() => addItem(item.nameList)}>Adicionar novo item</button>
+                {visibleItem && 
+                  <div className='add'>
+                    <input type='text' value={newItem} onChange={(e) => setNewItem(e.target.value)}/>
+                    <FiPlus color='white' size={27} onClick={() => addItem(item.nameList)}/>
+                  </div>
+                }
+                <button className='buttonList' onClick={() => setVisibleItem(!visibleItem)}>Adicionar novo item</button>
               </div>)
           })}     
         </div>

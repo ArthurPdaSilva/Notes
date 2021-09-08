@@ -5,14 +5,14 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
 
-let firebaseConfig = {
-    apiKey: "AIzaSyBv7KnCwEoJHmUuA9Ik-PxSozHutQUPcGg",
-    authDomain: "notes-769a5.firebaseapp.com",
-    projectId: "notes-769a5",
-    storageBucket: "notes-769a5.appspot.com",
-    messagingSenderId: "483074483793",
-    appId: "1:483074483793:web:f10f16bbfb21e94d48ba70",
-    measurementId: "G-BCZNBC10GH"
+const firebaseConfig = {
+    apiKey: "AIzaSyDySPhbGgaZaVS9VlKFRPmtk0V7UQml6IA",
+    authDomain: "note-a7b68.firebaseapp.com",
+    projectId: "note-a7b68",
+    storageBucket: "note-a7b68.appspot.com",
+    messagingSenderId: "883758163513",
+    appId: "1:883758163513:web:080663f50ede29a2464fe8",
+    measurementId: "G-1D810BCG2T"
 };
 
 // Initialize Firebase

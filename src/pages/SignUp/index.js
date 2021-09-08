@@ -6,25 +6,14 @@ import './signup.css';
 
 export default function SignIn() {
 
+ const {signUp, handlePasswordVisible, typePassword} = useContext(AuthContext);
  const [firstName, setFirstName] = useState(''); 
  const [lastName, setLastName] = useState('');
  const [email, setEmail] = useState('');
  const [gender, setGender] = useState('masculino');
-
- //  Passwords
  const [password, setPassword] = useState('');
- const [typePassword, setTypePassword] = useState('password');
+ 
 
-//  Contexts
- const {signUp} = useContext(AuthContext);
-
- function handlePasswordVisible(){
-   if(typePassword === 'password'){
-     setTypePassword('text');
-   }else{
-     setTypePassword('password');
-   }
- }
 
  function signUpUser(e){
   e.preventDefault();

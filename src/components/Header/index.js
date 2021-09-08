@@ -1,8 +1,8 @@
 import React, {useState, useContext} from 'react';
 import {AuthContext} from '../../contexts/auth';
 import { FiMenu, FiChevronDown, FiChevronUp, FiUser } from 'react-icons/fi';
-import './header.css';
 import { Link } from 'react-router-dom';
+import './header.css';
 
 export default function Header() {
 
@@ -12,9 +12,7 @@ export default function Header() {
   return (
     <header>
 
-      <FiMenu color='#EBF2FA' size={30}/>
-
-      <h1>Notes</h1>
+      <h1>Anotações e TO-DO lists</h1>
 
       <nav className='user'>
         <ul>

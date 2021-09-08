@@ -13,7 +13,9 @@ export default function Error() {
   return (
    <div className='errorContainer'>
        <h1>ERROR</h1>
-       <p>Infelizmente, a página que você está tentando acessar, ela não existe. O redirecionaremos para a página inicial em 5 segundos.</p>
+       <p>
+         Infelizmente, a página que você está tentando acessar, ela não existe. O redirecionaremos para a página inicial em 5 segundos.
+       </p>
    </div>
  );
 }

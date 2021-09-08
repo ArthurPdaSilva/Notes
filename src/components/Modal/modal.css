@@ -58,7 +58,6 @@ div.modal input{
 }
 
 /* Button add new list */
-
 div.modal button.plusButton{
     background-color: var(--corPrincipal);
     padding: calc(var(--padding) - 4.5px);

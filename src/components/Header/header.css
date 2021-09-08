@@ -1,5 +1,4 @@
 /* Cabeçalho */
-
 header{
     display: flex;
     align-items: center;
@@ -14,7 +13,6 @@ header h1{
 }
 
 /* Nav */
-
 header nav.user > ul{
     display: flex;
     align-items: center;

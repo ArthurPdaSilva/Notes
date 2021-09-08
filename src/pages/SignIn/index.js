@@ -5,19 +5,11 @@ import {FiLock, FiEye, FiEyeOff, FiMail} from 'react-icons/fi';
 import './signin.css';
 
 export default function SignIn() {
+  
+  const {login, handlePasswordVisible, typePassword} = useContext(AuthContext);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('');
 
- const {login} = useContext(AuthContext);
- const [email, setEmail] = useState('')
- const [password, setPassword] = useState('');
- const [typePassword, setTypePassword] = useState('password')
-
- function handlePasswordVisible(){
-   if(typePassword === 'password'){
-     setTypePassword('text');
-   }else{
-     setTypePassword('password');
-   }
- }
 
  function signIn(e){
   e.preventDefault();

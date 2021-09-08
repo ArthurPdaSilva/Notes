@@ -1,18 +1,15 @@
 import {createContext, useEffect, useState} from 'react';
-// Importar banco de dados
 import firebase from '../services/firebaseConnection';
-
 export const AuthContext = createContext({});
 
 export default function AuthProvider({children}){
  
  const [user, setUser] = useState(null);
-
- //  loadings
+ const [typePassword, setTypePassword] = useState('password');
  const [loading, setLoading] = useState(true);
  const [loadingAuth, setLoadingAuth] = useState(false);
 
-//  Pegando os dados do storage
+ //  Pegando os dados do storage
  useEffect(() => {
      function storageUser(){
         const isUser = localStorage.getItem('user');
@@ -63,8 +60,8 @@ export default function AuthProvider({children}){
     })
  }
 
-// Login
-async function login(email, password){
+ // Login
+ async function login(email, password){
     setLoadingAuth(true);
     await firebase.auth().signInWithEmailAndPassword(email, password).then(async(value) => {
         let uid = value.user.uid; 
@@ -91,14 +88,22 @@ async function login(email, password){
         setLoadingAuth(false);
     })
  }
+ //Trocando o olhinho 
+ function handlePasswordVisible(){
+    if(typePassword === 'password'){
+      setTypePassword('text');
+    }else{
+      setTypePassword('password');
+    }
+  }
 
-//  Salvando o user no storage
+ //  Salvando o user no storage
  function storageUser(user){
     //  Transforma jason um object
      localStorage.setItem('user', JSON.stringify(user));
  }
 
-// SignOut
+ // SignOut
  async function signOut(){
     await firebase.auth().signOut();
     localStorage.removeItem('user');
@@ -108,7 +113,7 @@ async function login(email, password){
 
  return(
     //  !! ele converte o valor em object em boolean
-     <AuthContext.Provider value={{signed: !!user, user, setUser, loading, loadingAuth, signUp, storageUser, login, signOut}}>
+     <AuthContext.Provider value={{signed: !!user, user, setUser, loading, loadingAuth, signUp, storageUser, login, signOut, handlePasswordVisible, typePassword}}>
          {children}
      </AuthContext.Provider>
  )

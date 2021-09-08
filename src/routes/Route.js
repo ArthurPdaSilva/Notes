@@ -9,10 +9,6 @@ export default function RouterWrapper({
 }){
     const {signed, loading} = useContext(AuthContext);
 
-    // if(loading){
-        // <div>Carregando</div>
-    // }
-
     // Se ele não ta logado e tenta acessar uma página privada
     if(!signed && isPrivate){
         return <Redirect to='/'/>
