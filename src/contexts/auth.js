@@ -8,6 +8,7 @@ export default function AuthProvider({children}){
  const [typePassword, setTypePassword] = useState('password');
  const [loading, setLoading] = useState(true);
  const [loadingAuth, setLoadingAuth] = useState(false);
+ const [lista, setLista] = useState([]);
 
  //  Pegando os dados do storage
  useEffect(() => {
@@ -111,9 +112,23 @@ export default function AuthProvider({children}){
     alert('Saindo');
  }
 
+ // Atualiza a lista no site
+ async function updateState(snapshot){
+    let lista = []
+    snapshot.forEach((doc) => {
+      lista.push({
+        idUser: doc.data().idUser,
+        nameList: doc.data().nameList,
+        itens: doc.data().itens
+      })
+    })
+
+    setLista(lista.filter((item) => item.idUser === user.uid))
+  }
+
  return(
     //  !! ele converte o valor em object em boolean
-     <AuthContext.Provider value={{signed: !!user, user, setUser, loading, loadingAuth, signUp, storageUser, login, signOut, handlePasswordVisible, typePassword}}>
+     <AuthContext.Provider value={{signed: !!user, user, setUser, loading, loadingAuth, signUp, storageUser, login, signOut, handlePasswordVisible, typePassword, lista, setLista, updateState}}>
          {children}
      </AuthContext.Provider>
  )

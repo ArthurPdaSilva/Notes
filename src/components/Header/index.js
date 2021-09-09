@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {AuthContext} from '../../contexts/auth';
-import { FiMenu, FiChevronDown, FiChevronUp, FiUser } from 'react-icons/fi';
+import { FiChevronDown, FiChevronUp, FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import './header.css';
 
@@ -23,7 +23,10 @@ export default function Header() {
             {displayMenu &&
               <ul>
                 <li>
-                  <Link to='/perfil'>Editar Perfil</Link>
+                  <Link to='/home'>Home</Link>
+                </li>
+                <li>
+                  <Link to='/perfil'>Perfil</Link>
                 </li>
                 <li>
                   <button onClick={signOut}>Sair</button>

@@ -1,19 +1,19 @@
 import React, {useEffect, useState, useContext} from 'react';
-import { FiPlus, FiSettings } from 'react-icons/fi';
+import { FiSettings, FiX } from 'react-icons/fi';
 import { AuthContext } from '../../contexts/auth';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Modal from '../../components/Modal';
+import ModalEdit from '../../components/ModalEdit';
 import firebase from '../../services/firebaseConnection';
 import './home.css';
 
 export default function Home() {
   
   const [modal, setModal] = useState(false);
-  const [lista, setLista] = useState([]);
-  const [visibleItem, setVisibleItem] = useState(true);
-  const [newItem, setNewItem] = useState('');
-  const {user} = useContext(AuthContext);
+  const [modalEdit, setModalEdit] = useState(false);
+  const [nameList, setNameList] = useState('');
+  const {user, lista, setLista, updateState} = useContext(AuthContext);
 
   // Pegando as to-do lists
   useEffect(() => {
@@ -25,36 +25,35 @@ export default function Home() {
     loadNotes()
   }, [updateState, user.uid])
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  async function updateState(snapshot){
-    let lista = []
-    snapshot.forEach((doc) => {
-      lista.push({
-        idUser: doc.data().idUser,
-        nameList: doc.data().nameList,
-        itens: doc.data().itens
-      })
-    })
 
-    setLista(lista.filter((item) => item.idUser === user.uid))
-
-  }
-
-  // Adicionando itens nas listas
-  async function addItem(idName){
+  // Removendo um item na lista
+  async function deleteItem(idName, item){
     let listaItens = lista.filter((item) => item.nameList === idName)
     let values = listaItens.map((el) => el.itens)
-    values[0].push(newItem)
-
+    values[0].splice(values[0].indexOf(item), 1)
+    
     await firebase.firestore().collection('lists').doc(idName).update({
       itens: values[0]
     })
     await firebase.firestore().collection('lists').get().then((snapshot) => {
       updateState(snapshot)
-    })  
+    })
+  }
 
-    setNewItem('');
-    setVisibleItem(!visibleItem)
+  // Deletando a lista
+  async function deleteList(list){
+
+    await firebase.firestore().collection('lists').doc(list).delete()
+
+    await firebase.firestore().collection('lists').get().then((snapshot) => {
+      updateState(snapshot)
+    })
+  }
+
+  // Atualizando o modal
+  function modalForm(name){
+    setNameList(name)
+    setModalEdit(!modalEdit)
   }
 
   return (
@@ -72,23 +71,17 @@ export default function Home() {
                 
                 <div className="topContainer">
                   <h3>{item.nameList}</h3>
-                  <FiSettings size={20}/>
+                  <FiX size={20} alt='Deletando Lista' onClick={() => {deleteList(item.nameList)}}/>
                 </div>
                 
                 <ul className="containerItens">
                   {item.itens.map((values) => {
                     return(
-                      <li key={values}>{values}</li>
+                      <li key={values}>{values}<FiX color='#2B303A' size={20} onClick={() => deleteItem(item.nameList, values)}/></li>
                     )
                   })}
                 </ul>
-                {visibleItem && 
-                  <div className='add'>
-                    <input type='text' value={newItem} onChange={(e) => setNewItem(e.target.value)}/>
-                    <FiPlus color='white' size={27} onClick={() => addItem(item.nameList)}/>
-                  </div>
-                }
-                <button className='buttonList' onClick={() => setVisibleItem(!visibleItem)}>Adicionar novo item</button>
+                <button className='buttonList' onClick={() => {modalForm(item.nameList)}}>Editar</button>
               </div>)
           })}     
         </div>
@@ -98,6 +91,10 @@ export default function Home() {
      {modal && (
        <Modal modal={modal} setModal={setModal}/>
      )}
+     {modalEdit && (
+          <ModalEdit nameItem={nameList} setNameItem={setNameList} modal={modalEdit} setModal={setModalEdit}/>
+      )}   
+
    </div>
  );
 }

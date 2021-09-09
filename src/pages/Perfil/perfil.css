@@ -1,0 +1,52 @@
+/* Profile Container */
+div.perfil{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--corBranca);
+    width: 100%;
+    padding: var(--padding);
+    min-height: 50vh;
+}
+
+form.formProfile{
+    display: flex;
+    flex-direction: column;
+}
+
+form.formProfile img{
+    display: flex;
+    border-radius: 50%;
+    /* Fique por baixo */
+    object-fit: cover;
+}
+
+form.formProfile label{
+    margin-bottom: .5em;
+    font-size: 1.4em;
+}
+
+form.formProfile label.label-avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 280px;
+    height: 280px;
+    cursor: pointer;
+}
+
+form.formProfile label.label-avatar input{
+    display: none;
+}
+
+form.formProfile label.label-avatar span{
+    z-index: 99;
+    position: absolute;
+    opacity: 0.7;
+    transition: all .5s ease;
+}
+
+form.formProfile label.label-avatar span:hover{
+    opacity: 1;
+    transform: scale(1.4);
+}

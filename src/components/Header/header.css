@@ -29,12 +29,11 @@ header nav.user ul li ul{
     position: absolute;
     top: 65px;
     right: 75px;
-    /* gap: calc(var(--gaps) + 5px); */
 }
 
 header nav.user ul li ul li{
     display: flex;
-    align-items: center;
+    width: 20vw;
 }
 
 header nav.user ul li ul li button, header nav.user ul li ul li a{
@@ -43,6 +42,7 @@ header nav.user ul li ul li button, header nav.user ul li ul li a{
     background-color: var(--corHeader);
     width: 100%;
     height: 100%;
+    text-align: center;
     font-size: calc(var(--fontSize) + 5px);
     padding: calc(var(--padding) + 5px);
     transition: all .4s ease;

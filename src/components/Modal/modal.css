@@ -47,7 +47,7 @@ div.modal div.addList{
 
 /* Inputs in the modal */
 
-div.modal input{
+div.modal div.listaAdd input{
     border: none;
     min-width: 20vw;
     min-height: 7.5vh;

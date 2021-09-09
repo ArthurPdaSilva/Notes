@@ -23,12 +23,12 @@ export default function Modal({modal, setModal}) {
       alert('Preencha todos os campos');
       return;
     }else{
+      alert('Lista cadastrada com sucesso')
       await firebase.firestore().collection('lists').doc(nameList).set({
         idUser: user.uid,
         nameList: nameList,
         itens: list,
       }).then(() => {
-        alert('Lista cadastrada com sucesso')
         setModal(!modal)
       }).catch((error) => console.log(error))
     }
