@@ -1,98 +1,87 @@
-/* All Main */
-div.all{
+import styled from 'styled-components';
+
+export const Container = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-}
 
-/* Main */
-main{
+`;
+
+export const MainContainer = styled.main`
     display: flex;
     flex-direction: column;
     padding: var(--padding);
     min-height: 70vh;
     width: 100%;
-}
+`;
 
-/* Cabeçalho em main */
-main div.top{
+export const Title = styled.div`
     font-size: 1.2rem;
     color: var(--corBranca);
-}
+`;
 
-/* To-do Container */
-main div.notes{
+export const Section = styled.section`
     display: flex;
     gap: var(--gaps);
     flex-wrap: wrap;
     width: 100%;
     padding: var(--padding);
     margin: calc(var(--margin) + 10px) 10px 0 0;
-}
+`;
 
-/* To-do itens */
-main div.container{
+export const ModalContainer = styled.div`
     background-color: var(--corSecundaria);
     padding: var(--padding);
     border-radius: var(--borderRadius);
     min-width: 40vh;
-}
+`;
 
-/* To-do top*/
-main div.topContainer{
+export const TopContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: calc(var(--margin));
-}
 
-/* To-do top*/
-main div.topContainer h3, main div.topContainer svg{
-    color: var(--corPrincipal);
-}
+    svg{
+        color: var(--corPrincipal);
+    }
 
-/* To-do list */
-main div.container ul{
+`;
+
+export const ContainerItens = styled.ul`
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: calc(var(--gaps) - 5px);
     width: 100%;
-}
+    
+    li{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--corBranca);
+        box-shadow: var(--shadow);
+        border-radius: calc(var(--borderRadius) - 5px);
+        padding: calc(var(--padding) - 5px);
+        text-align: center;
+        width: 100%;
+    }
+`;
 
-main div.container ul.containerItens li{
+export const Footer = styled.footer`
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background-color: var(--corBranca);
-    box-shadow: var(--shadow);
-    border-radius: calc(var(--borderRadius) - 5px);
-    padding: calc(var(--padding) - 5px);
-    text-align: center;
     width: 100%;
-}
+    justify-content: flex-end;
+    padding: var(--padding);
+`;
 
-
-
-/* Button List */
-button.buttonList{
+export const ButtonAdd = styled.button`
     background-color: var(--corTerciaria);
     color: var(--corBranca);
     padding: var(--padding);
     margin-top: var(--margin);
     font-size: calc(var(--fontSize) - 2px);
     font-weight: bold;
-}
-
-main div.container button.buttonList{
-    width: 100%;
-}
-
-/* Rodapé */
-footer{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: flex-end;
-    padding: var(--padding);
-}
+    border-radius: 5px;
+`;

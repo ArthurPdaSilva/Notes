@@ -7,7 +7,7 @@ import './header.css';
 export default function Header() {
 
   const [displayMenu, setDisplayMenu] = useState(false);
-  const {user, signOut} = useContext(AuthContext);  
+  const {user, deslogar} = useContext(AuthContext);  
 
   return (
     <header>
@@ -29,7 +29,7 @@ export default function Header() {
                   <Link to='/perfil'>Perfil</Link>
                 </li>
                 <li>
-                  <button onClick={signOut}>Sair</button>
+                  <button onClick={deslogar}>Sair</button>
                 </li>
               </ul>
             }

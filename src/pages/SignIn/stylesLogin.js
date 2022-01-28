@@ -32,11 +32,12 @@ export const LoginContainer = styled.div`
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     min-height: 50vh;
     padding: calc(var(--padding) + 10px);
-    gap: var(--gaps);
+    gap: calc(var(--gaps) + 10px);
 
     & > button{
         color: var(--corBranca);
@@ -45,17 +46,17 @@ export const Form = styled.form`
         border: none;
         border-radius: var(--borderRadius);
         font-weight: bold;
-        font-size: 1rem;
+        font-size: 1.5rem;
+        min-width: 35vw;
     }
 `;
 
 export const InputGroup = styled.div`
     display: flex;
     flex-direction: row;
-
     input{
         border: none;
-        min-width: 20vw;
+        width: 30vw;
         background-color: var(--corSecundaria);
         padding: var(--padding);
         font-size: 1rem;

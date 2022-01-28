@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
-import {FiUser, FiLock, FiEye, FiEyeOff, FiMail, FiMoreVertical} from 'react-icons/fi';
+import {FiUser, FiLock, FiEye, FiEyeOff, FiMail, FiMoreVertical, FiXCircle} from 'react-icons/fi';
 import {AuthContext} from '../../contexts/auth';
 import { Login, LoginContainer, Form, InputGroup } from '../SignIn/stylesLogin.js';
 import { FieldCamps, OptionsCamp } from './stylesRegister.js';
@@ -8,8 +8,7 @@ import { FieldCamps, OptionsCamp } from './stylesRegister.js';
 export default function SignIn() {
 
   const {signUp, handlePasswordVisible, typePassword} = useContext(AuthContext);
-  const [firstName, setFirstName] = useState(''); 
-  const [lastName, setLastName] = useState('');
+  const [name, setName] = useState(''); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [gender, setGender] = useState('Masculino');
@@ -17,8 +16,8 @@ export default function SignIn() {
 
   function signUpUser(e){
     e.preventDefault();
-    if(firstName !== '' && lastName !== '' && email !== '' && password !== '' && gender !== ''){
-      signUp(email, password, `${firstName} ${lastName}`, gender);
+    if(name !== '' && email !== '' && password !== '' && gender !== ''){
+      signUp(email.trim(), password.trim(), name.trim(), gender);
     }
   }
 
@@ -32,14 +31,10 @@ export default function SignIn() {
             <label>
               <FiUser color='white' size={24}/>
             </label>
-            <input type='text' placeholder='Primeiro Nome' value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
-          </InputGroup>
-
-          <InputGroup>
-            <label>
-              <FiUser color='white' size={24}/>
-            </label>
-            <input type='text' placeholder='Sobrenome' value={lastName} onChange={(e) => setLastName(e.target.value)} required/>
+            <input type='text' placeholder='Seu nome' value={name} onChange={(e) => setName(e.target.value)} required/>
+            <button type='button' onClick={() => setName('')}>
+              <FiXCircle color='white' size={24}/>
+            </button>
           </InputGroup>
 
           <InputGroup>
@@ -47,6 +42,9 @@ export default function SignIn() {
               <FiMail color='white' size={24}/>
             </label>
             <input type='email' placeholder='user@gmail.com' value={email} onChange={(e) => setEmail(e.target.value)} required/>
+            <button type='button' onClick={() => setEmail('')}>
+              <FiXCircle color='white' size={24}/>
+            </button>
           </InputGroup>
 
           <InputGroup>
@@ -59,12 +57,15 @@ export default function SignIn() {
             </button>
           </InputGroup>
 
-          {(gender !== 'masculino' && gender !== 'feminino') && 
+          {(gender !== 'Masculino' && gender !== 'Feminino') && 
             <InputGroup>
               <label>
                 <FiMoreVertical color='white' size={24}/>
               </label>
               <input type='text' placeholder='Qual é o seu gênero?' onChange={(e) => setGender(e.target.value)}/>
+              <button type='button' onClick={() => setGender('Masculino')}>
+              <FiXCircle color='white' size={24}/>
+            </button>
             </InputGroup>
           }
 

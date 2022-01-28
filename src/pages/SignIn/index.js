@@ -1,7 +1,7 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import {AuthContext} from '../../contexts/auth';
-import {FiLock, FiEye, FiEyeOff, FiMail} from 'react-icons/fi';
+import { AuthContext } from '../../contexts/auth';
+import { FiLock, FiEye, FiEyeOff, FiMail, FiXCircle } from 'react-icons/fi';
 import { Login, LoginContainer, Form, InputGroup } from './stylesLogin.js';
 
 export default function SignIn() {
@@ -15,7 +15,7 @@ export default function SignIn() {
     e.preventDefault();
       
     if(email !== '' && password !== ''){
-      login(email, password)
+      login(email.trim(), password.trim());
     }
   }
 
@@ -30,6 +30,9 @@ export default function SignIn() {
               <FiMail color='white' size={24}/>
             </label>
             <input type='email' placeholder='user@gmail.com' value={email} onChange={(e) => setEmail(e.target.value)} required/>
+            <button type='button' onClick={() => setEmail('')}>
+              <FiXCircle color='white' size={24}/>
+            </button>
           </InputGroup>
 
           <InputGroup>
@@ -37,10 +40,11 @@ export default function SignIn() {
               <FiLock color='white' size={24}/>
             </label>
             <input type={typePassword} placeholder='*******' value={password} onChange={(e) => setPassword(e.target.value)} minLength={8} required/>
-            <button onClick={handlePasswordVisible} type='button' className='buttonPassword'>
+            <button onClick={handlePasswordVisible} type='button'>
               {typePassword === 'text' ? <FiEye color='white' size={24}/> : <FiEyeOff color='white' size={24}/>}
             </button>
           </InputGroup>
+
           <button type='submit'>Login</button>
         </Form>
 

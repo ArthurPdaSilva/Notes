@@ -1,5 +1,5 @@
 import { db, auth } from '../services/firebaseConnection';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { setDoc, getDoc, doc } from 'firebase/firestore';
 import { createContext, useEffect, useState } from 'react';
 
@@ -9,18 +9,14 @@ export default function AuthProvider({children}){
     const [user, setUser] = useState(null);
     const [typePassword, setTypePassword] = useState('password');
     const [list, setList] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [loadingAuth, setLoadingAuth] = useState(false);
 
     useEffect(() => {
     function storageUser(){
         const isUser = localStorage.getItem('user');
-
         if(isUser){
             setUser(JSON.parse(isUser));
         }
-
-        setLoading(false);
     }
     storageUser()
     }, [])
@@ -97,8 +93,8 @@ export default function AuthProvider({children}){
         localStorage.setItem('user', JSON.stringify(user));
     }
 
-    async function signOut(){
-        await signOut();
+    async function deslogar(){
+        await signOut(auth);
         alert('Saindo...');
         localStorage.removeItem('user');
         setUser(null);
@@ -120,11 +116,11 @@ export default function AuthProvider({children}){
     return(
         <AuthContext.Provider 
         value={{signed: !!user, user,
-        setUser, loading, loadingAuth, 
+        setUser, loadingAuth, 
         signUp, storageUser, login, 
         signOut, handlePasswordVisible, 
         typePassword, list, setList, 
-        updateState}}>
+        updateState, deslogar}}>
             {children}
         </AuthContext.Provider>
     )

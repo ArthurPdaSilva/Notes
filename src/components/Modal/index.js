@@ -2,8 +2,9 @@ import React, {useState, useRef, useContext} from 'react';
 import { AuthContext } from '../../contexts/auth';
 import { FiPlus, FiX } from 'react-icons/fi';
 import { db } from '../../services/firebaseConnection';
-import { updateDoc, doc, getDoc, getDocs, setDoc, deleteDoc, collection } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import './modal.css';
+import { ButtonAdd } from '../../pages/Home/stylesHome';
 
 export default function Modal({modal, setModal}) {
 
@@ -14,7 +15,14 @@ export default function Modal({modal, setModal}) {
   const field = useRef(null);
 
   function addItens(){
-    setList(oldValue => [...oldValue, item]);
+    //Verificando se a lista já tem esse valor:
+    const hasItem = list.find((name) => name === item);
+    if(hasItem){
+      alert("Item já se encontra na lista!");
+    }else{
+      setList(oldValue => [...oldValue, item]);
+    }
+    
     field.current.focus();
     setItem('');
   }
@@ -64,7 +72,7 @@ export default function Modal({modal, setModal}) {
               )
             })}
           </ul>
-          <button className='buttonList' onClick={handleDone}>Concluido</button>
+          <ButtonAdd onClick={handleDone}>Concluido</ButtonAdd>
         </div>
       </div>
     </div>
