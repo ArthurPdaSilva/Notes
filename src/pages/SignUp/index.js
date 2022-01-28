@@ -2,97 +2,87 @@ import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import {FiUser, FiLock, FiEye, FiEyeOff, FiMail, FiMoreVertical} from 'react-icons/fi';
 import {AuthContext} from '../../contexts/auth';
-import './signup.css';
+import { Login, LoginContainer, Form, InputGroup } from '../SignIn/stylesLogin.js';
+import { FieldCamps, OptionsCamp } from './stylesRegister.js';
 
 export default function SignIn() {
 
- const {signUp, handlePasswordVisible, typePassword} = useContext(AuthContext);
- const [firstName, setFirstName] = useState(''); 
- const [lastName, setLastName] = useState('');
- const [email, setEmail] = useState('');
- const [gender, setGender] = useState('masculino');
- const [password, setPassword] = useState('');
- 
+  const {signUp, handlePasswordVisible, typePassword} = useContext(AuthContext);
+  const [firstName, setFirstName] = useState(''); 
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [gender, setGender] = useState('Masculino');
+  const dados = ["Masculino", 'Feminino', 'Outro'];
 
-
- function signUpUser(e){
-  e.preventDefault();
-  if(firstName !== '' && lastName !== '' && email !== '' && password !== '' && gender !== ''){
-    signUp(email, password, `${firstName} ${lastName}`, gender);
+  function signUpUser(e){
+    e.preventDefault();
+    if(firstName !== '' && lastName !== '' && email !== '' && password !== '' && gender !== ''){
+      signUp(email, password, `${firstName} ${lastName}`, gender);
+    }
   }
- }
 
- return (
-   <div className='login'>
-      <div className="loginContainer">
+  return (
+    <Login>
+      <LoginContainer>
         <h1>SignUp</h1>
         
-        <form onSubmit={signUpUser}>
-          <div className="groupInput">
+        <Form onSubmit={signUpUser}>
+          <InputGroup>
             <label>
               <FiUser color='white' size={24}/>
             </label>
             <input type='text' placeholder='Primeiro Nome' value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
-          </div>
+          </InputGroup>
 
-          <div className="groupInput">
+          <InputGroup>
             <label>
               <FiUser color='white' size={24}/>
             </label>
             <input type='text' placeholder='Sobrenome' value={lastName} onChange={(e) => setLastName(e.target.value)} required/>
-          </div>
+          </InputGroup>
 
-          <div className="groupInput">
+          <InputGroup>
             <label>
               <FiMail color='white' size={24}/>
             </label>
             <input type='email' placeholder='user@gmail.com' value={email} onChange={(e) => setEmail(e.target.value)} required/>
-          </div>
+          </InputGroup>
 
-          <div className="groupInput">
+          <InputGroup>
             <label>
               <FiLock color='white' size={24}/>
             </label>
             <input type={typePassword} placeholder='*******' value={password} onChange={(e) => setPassword(e.target.value)} minLength={8} required/>
-            <button onClick={handlePasswordVisible} type='button' className='buttonPassword'>
-              {typePassword === 'text' ? <FiEye color='black' size={24}/> : <FiEyeOff color='black' size={24}/>}  
+            <button onClick={handlePasswordVisible} type='button'>
+              {typePassword === 'text' ? <FiEye color='#FFF' size={24}/> : <FiEyeOff color='white' size={24}/>}  
             </button>
-          </div>
+          </InputGroup>
 
           {(gender !== 'masculino' && gender !== 'feminino') && 
-            <div className='groupInput'>
+            <InputGroup>
               <label>
                 <FiMoreVertical color='white' size={24}/>
               </label>
               <input type='text' placeholder='Qual é o seu gênero?' onChange={(e) => setGender(e.target.value)}/>
-            </div>
+            </InputGroup>
           }
 
-          <fieldset className='gender'>
+          <FieldCamps>
             <legend>Sexo</legend>
-            <div className="options">
-              <input type='radio' name='group' id='masculino' value='masculino' onChange={(e) => setGender(e.target.value)}/>
-              <label for='masculino'>Masculino</label>
-            </div>
-            
-            <div className="options">
-              <input type='radio' name='group' id='feminino' value='feminino' onChange={(e) => setGender(e.target.value)}/>
-              <label for='feminino'>Feminino</label>
-            </div>
+            {dados.map(value => (
+              <OptionsCamp key={value}>
+                <input type='radio' name='group' id={value} value={value} onChange={(e) => setGender(e.target.value)}/>
+                <label htmlFor={value}>{value}</label>
+              </OptionsCamp>
+            ))}
+          </FieldCamps>
 
-            <div className="options">
-              <input type='radio' name='group' id='outro' value='outro' onChange={(e) => setGender(e.target.value)}/>
-              <label for='outro'>Outro</label>
-            </div>
-          </fieldset>
+          <button type='submit'>Cadastrar</button>
+        </Form>
 
-          <button type='submit' className='buttons'>Cadastrar</button>
-        </form>
-
-        <hr/>
-
-        <Link to='/' className='buttons'>Já possui uma conta?</Link>
-      </div>
-   </div>
- );
-}
+        <Link to='/'>Já possui uma conta?</Link>
+      </LoginContainer>
+    </Login>
+  );
+  }

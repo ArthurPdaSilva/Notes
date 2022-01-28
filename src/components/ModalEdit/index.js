@@ -1,7 +1,8 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
+import { db } from '../../services/firebaseConnection';
+import { updateDoc, doc, getDoc, getDocs, setDoc, deleteDoc, collection } from 'firebase/firestore';
 import { AuthContext } from '../../contexts/auth';
 import { FiPlus, FiX } from 'react-icons/fi';
-import firebase from '../../services/firebaseConnection';
 import './modalEdit.css';
 
 export default function ModalEdit({nameItem, setNameItem, modal, setModal}) {
@@ -9,21 +10,20 @@ export default function ModalEdit({nameItem, setNameItem, modal, setModal}) {
     const [visibleItem, setVisibleItem] = useState(false);
     const [newItem, setNewItem] = useState('');
     const [valueName, setValueName] = useState(nameItem);
-    const {lista, setLista, updateState} = useContext(AuthContext);
+    const {list, setList, updateState} = useContext(AuthContext);
 
     // Adicionando itens nas listas
     async function addItem(){
-        let listaItens = lista.filter((item) => item.nameList === nameItem)
-        let values = listaItens.map((el) => el.itens)
-        setVisibleItem(!visibleItem)
-        values[0].push(newItem)
+        let listaItens = list.filter((item) => item.nameList === nameItem);
+        let values = listaItens.map((el) => el.itens);
+        setVisibleItem(!visibleItem);
+        values[0].push(newItem);
 
-        await firebase.firestore().collection('lists').doc(nameItem).update({
+        await updateDoc(doc(db, 'lists', nameItem), {
             itens: values[0]
+        }).then((snapshot) => {
+            updateState(snapshot);
         })
-        await firebase.firestore().collection('lists').get().then((snapshot) => {
-            updateState(snapshot)
-        })  
 
         setNewItem('');
     }
@@ -31,26 +31,24 @@ export default function ModalEdit({nameItem, setNameItem, modal, setModal}) {
     async function changeList(){
 
         // Pegando o doc para trocar o nome do mesmo e do nome da lista
-        await firebase.firestore().collection('lists').doc(nameItem).get().then((doc) => {
+        await getDoc(doc(db, 'lists', nameItem)).then((doc) => {
             if(doc && doc.exists){
-                let data = doc.data()
-                firebase.firestore().collection('lists').doc(valueName).set(data);
+                let data = doc.data();
+                setDoc(doc(db, 'lists', valueName), data);
             }
         })
         
         // Adicionando o nome da lista
-        await firebase.firestore().collection('lists').doc(valueName).update({
+        await updateDoc(doc(db, 'lists', valueName), {
             nameList: valueName
         })
 
         // Apagando a o doc com nome antigo
-        await firebase.firestore().collection('lists').doc(nameItem).delete();
+        await deleteDoc(doc(db, 'lists', valueName));
         
-
-
-        await firebase.firestore().collection('lists').get().then((snapshot) => {
+        await getDocs(collection(db, 'lists')).then((snapshot) => {
             updateState(snapshot)
-        })  
+        })
 
         setValueName('');
         setModal(!modal);

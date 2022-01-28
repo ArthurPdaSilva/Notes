@@ -1,23 +1,19 @@
-import firebase from 'firebase/app';
-
-// Import components of firebase
-import 'firebase/firestore';
-import 'firebase/auth';
-import 'firebase/storage';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDySPhbGgaZaVS9VlKFRPmtk0V7UQml6IA",
-    authDomain: "note-a7b68.firebaseapp.com",
-    projectId: "note-a7b68",
-    storageBucket: "note-a7b68.appspot.com",
-    messagingSenderId: "883758163513",
-    appId: "1:883758163513:web:080663f50ede29a2464fe8",
-    measurementId: "G-1D810BCG2T"
+  apiKey: "AIzaSyCUPfj2fYvgFpvPKETNcq_2-rXjlzCgvWg",
+  authDomain: "notes-project-45868.firebaseapp.com",
+  projectId: "notes-project-45868",
+  storageBucket: "notes-project-45868.appspot.com",
+  messagingSenderId: "953800681922",
+  appId: "1:953800681922:web:8b52205b8b20105d850e5b",
+  measurementId: "G-T9MBDQWJED"
 };
 
 // Initialize Firebase
-if(!firebase.apps.length){
-    firebase.initializeApp(firebaseConfig);
-}
+const app = initializeApp(firebaseConfig);
 
-export default firebase;
+export const db = getFirestore();
+export const auth = getAuth();

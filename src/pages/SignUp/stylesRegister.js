@@ -1,19 +1,19 @@
-/* Fieldset Gender */
-fieldset.gender{
+import styled from 'styled-components';
+
+export const FieldCamps = styled.fieldset`
     display: flex;
     align-items: center;
     padding: var(--padding);
-}
+`;
 
-fieldset.gender div.options{
+export const OptionsCamp = styled.div`
     display: flex;
     align-items: center;
     gap: var(--gaps);
     margin-right: var(--margin);
     padding: var(--padding);
-}
 
-/* Group Gender */
-label[for='masculino'], label[for='feminino'], label[for='outro']{
-    cursor: pointer;
-}
+    label{
+        cursor: pointer;
+    }
+`;

@@ -1,6 +1,4 @@
-// Struture
-import { Switch } from "react-router";
-import Route from './Route';
+import { Routes, Route} from "react-router";
 
 // Pages
 import SignIn from '../pages/SignIn';
@@ -9,14 +7,22 @@ import Home from '../pages/Home';
 import Perfil from "../pages/Perfil";
 import Error from '../pages/Error';
 
-export default function Routes(){
+//Rotas
+import PublicRoutes from "./PublicRoutes";
+import PrivateRoutes from "./PrivateRoutes";
+
+export default function Rotas(){
     return(
-        <Switch>
-            <Route exact path='/' component={SignIn}/>
-            <Route exact path='/home' component={Home} isPrivate/>
-            <Route exact path='/signup' component={SignUp}/>
-            <Route exact path='/perfil' component={Perfil} isPrivate/>
-            <Route exact path='*' component={Error}/>
-        </Switch>
+        <Routes>
+            <Route element={<PrivateRoutes/>}>
+                <Route path='/home' element={<Home/>}/>
+                <Route path='/perfil' element={<Perfil/>}/>
+            </Route>
+            <Route element={<PublicRoutes/>}>
+                <Route path='/' element={<SignIn/>}/>
+                <Route path='/signup' element={<SignUp/>}/>
+            </Route>
+            <Route path='*' element={<Error/>}/>
+        </Routes>
     )
 }
