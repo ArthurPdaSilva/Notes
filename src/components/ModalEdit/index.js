@@ -1,8 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { db } from '../../services/firebaseConnection';
-import { updateDoc, doc, getDoc, getDocs, setDoc, deleteDoc, collection } from 'firebase/firestore';
+import { updateDoc, doc, getDocs, collection } from 'firebase/firestore';
 import { AuthContext } from '../../contexts/auth';
 import { FiPlus, FiX } from 'react-icons/fi';
+import { ButtonAdd } from '../../pages/Home/stylesHome';
+import './stylesModal.js';
 import './modalEdit.css';
 
 export default function ModalEdit({nameItem, setNameItem, modal, setModal}) {
@@ -10,7 +12,7 @@ export default function ModalEdit({nameItem, setNameItem, modal, setModal}) {
     const [visibleItem, setVisibleItem] = useState(false);
     const [newItem, setNewItem] = useState('');
     const [valueName, setValueName] = useState(nameItem);
-    const {list, setList, updateState} = useContext(AuthContext);
+    const {list, updateState} = useContext(AuthContext);
 
     // Adicionando itens nas listas
     async function addItem(){
@@ -29,25 +31,14 @@ export default function ModalEdit({nameItem, setNameItem, modal, setModal}) {
     }
 
     async function changeList(){
-
-        // Pegando o doc para trocar o nome do mesmo e do nome da lista
-        await getDoc(doc(db, 'lists', nameItem)).then((doc) => {
-            if(doc && doc.exists){
-                let data = doc.data();
-                setDoc(doc(db, 'lists', valueName), data);
-            }
-        })
-        
-        // Adicionando o nome da lista
+        // Adicionando item na lista
         await updateDoc(doc(db, 'lists', valueName), {
             nameList: valueName
         })
 
-        // Apagando a o doc com nome antigo
-        await deleteDoc(doc(db, 'lists', valueName));
-        
+        //Atualizando a lista
         await getDocs(collection(db, 'lists')).then((snapshot) => {
-            updateState(snapshot)
+            updateState(snapshot);
         })
 
         setValueName('');
@@ -58,7 +49,7 @@ export default function ModalEdit({nameItem, setNameItem, modal, setModal}) {
     <div className='modalContainer'>
         <div className="modal">
             <div className="itensTop">
-                <h1>Editando {nameItem}</h1>
+                <h1>{nameItem}</h1>
                 <button onClick={() => {setModal(!modal)}}>
                 <FiX color='#2B303A' size={30}/>
                 </button>
@@ -72,7 +63,7 @@ export default function ModalEdit({nameItem, setNameItem, modal, setModal}) {
                     <FiPlus color='white' size={30} onClick={addItem}/>
                 </div>       
 
-                <button className='buttonList' onClick={changeList}>Concluir</button>         
+                <ButtonAdd onClick={changeList}>Concluir</ButtonAdd>         
             </div>
         </div>
     </div>

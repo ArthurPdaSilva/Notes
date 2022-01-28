@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import {FiUser, FiLock, FiEye, FiEyeOff, FiMail, FiMoreVertical, FiXCircle} from 'react-icons/fi';
 import {AuthContext} from '../../contexts/auth';
@@ -14,12 +14,12 @@ export default function SignIn() {
   const [gender, setGender] = useState('Masculino');
   const dados = ["Masculino", 'Feminino', 'Outro'];
 
-  function signUpUser(e){
+  const signUpUser = useCallback((e) => {
     e.preventDefault();
     if(name !== '' && email !== '' && password !== '' && gender !== ''){
       signUp(email.trim(), password.trim(), name.trim(), gender);
     }
-  }
+  }, [email, gender, name, password, signUp])
 
   return (
     <Login>

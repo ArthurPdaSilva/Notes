@@ -30,6 +30,8 @@ export const Section = styled.section`
 `;
 
 export const ModalContainer = styled.div`
+    display: flex;
+    flex-direction: column;
     background-color: var(--corSecundaria);
     padding: var(--padding);
     border-radius: var(--borderRadius);
@@ -70,8 +72,9 @@ export const ContainerItens = styled.ul`
 
 export const Footer = styled.footer`
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     width: 100%;
+    height: 15vh;
     justify-content: flex-end;
     padding: var(--padding);
 `;
@@ -81,7 +84,11 @@ export const ButtonAdd = styled.button`
     color: var(--corBranca);
     padding: var(--padding);
     margin-top: var(--margin);
-    font-size: calc(var(--fontSize) - 2px);
+    font-size: 1.2em;
     font-weight: bold;
     border-radius: 5px;
+
+    &:hover{
+        background-color: rgb(67, 193, 153);
+    }
 `;

@@ -3,8 +3,8 @@ import { AuthContext } from '../../contexts/auth';
 import { FiPlus, FiX } from 'react-icons/fi';
 import { db } from '../../services/firebaseConnection';
 import { doc, setDoc } from 'firebase/firestore';
-import './modal.css';
 import { ButtonAdd } from '../../pages/Home/stylesHome';
+import './modal.css';
 
 export default function Modal({modal, setModal}) {
 

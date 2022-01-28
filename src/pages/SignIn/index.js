@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth';
 import { FiLock, FiEye, FiEyeOff, FiMail, FiXCircle } from 'react-icons/fi';
@@ -11,13 +11,12 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
 
 
-  function signIn(e){
+  const signIn = useCallback((e) => {
     e.preventDefault();
-      
     if(email !== '' && password !== ''){
       login(email.trim(), password.trim());
     }
-  }
+  }, [email, login, password]);
 
   return (
     <Login>

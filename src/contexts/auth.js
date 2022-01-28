@@ -100,7 +100,7 @@ export default function AuthProvider({children}){
         setUser(null);
     }
 
-    async function updateState(snapshot){
+    function updateState(snapshot){
         let lista = []
         snapshot.forEach((doc) => {
             lista.push({
@@ -110,7 +110,7 @@ export default function AuthProvider({children}){
             })
         })
 
-        setList(lista.filter((item) => item.idUser === user.uid))
+        setList(lista.filter((item) => item.idUser === user.uid));
     }
 
     return(

@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, { useEffect, useState, useContext, useCallback } from 'react';
 import { FiX } from 'react-icons/fi';
 import { AuthContext } from '../../contexts/auth';
 import { db } from '../../services/firebaseConnection';
@@ -29,34 +29,36 @@ export default function Home() {
 
 
   // Removendo um item na lista
-  async function deleteItem(idName, item){
-    let listaItens = list.filter((item) => item.nameList === idName)
-    let values = listaItens.map((el) => el.itens)
-    values[0].splice(values[0].indexOf(item), 1)
-    
-    await updateDoc(doc(db, 'lists', idName), {
-      itens: values[0]
-    });
+  const deleteItem = useCallback((idName, item) => {
+    async function deleteProp(idName, item){
+      let listaItens = list.filter((item) => item.nameList === idName)
+      let values = listaItens.map((el) => el.itens)
+      values[0].splice(values[0].indexOf(item), 1)
+      
+      await updateDoc(doc(db, 'lists', idName), {
+        itens: values[0]
+      });
+    }
 
-    await getDocs(collection(db, 'lists')).then((snapshot) => {
-      updateState(snapshot);
-    })
-  }
+    deleteProp(idName, item);
+
+  }, [list]);
 
   // Deletando a lista
-  async function deleteList(list){
-    await deleteDoc(doc(db, 'lists', list));
+  const deleteList = useCallback((list) => {
+    async function deleteListName(list){
+      await deleteDoc(doc(db, 'lists', list));
+      alert('Lista apagada com sucesso!');
+    }
 
-    await getDocs(collection(db, 'lists')).then((snapshot) => {
-      updateState(snapshot);
-    })
-  }
+    deleteListName(list);
+  }, []);
 
   // Atualizando o modal
-  function modalForm(name){
+  const modalForm = useCallback((name) => {
     setNameList(name);
     setModalEdit(!modalEdit);
-  }
+  }, [modalEdit])
 
   return (
     <Container>
