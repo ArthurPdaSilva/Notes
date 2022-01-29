@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import {AuthContext} from '../../contexts/auth';
 import { FiChevronDown, FiChevronUp, FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import './header.css';
+import { HeaderContainer, Menu, FlexivelMenu, DisplayLi } from './stylesHeader';
 
 export default function Header() {
 
@@ -10,18 +10,28 @@ export default function Header() {
   const {user, deslogar} = useContext(AuthContext);  
 
   return (
-    <header>
+    <HeaderContainer>
 
       <h1>Anotações e TO-DO lists</h1>
 
-      <nav className='user'>
+      <Menu>
         <ul>
+          <li>
+            @{user.name}
+          </li>
+          <li>
+            <Link to='/perfil'>
+              {user.avatarUrl === null ? 
+              <FiUser color='#EBF2FA' size={30}/> : 
+              <img src={user.avatarUrl} alt='imagem perfil'/>}
+            </Link>
+          </li>
           <li>
             {!displayMenu ? <FiChevronDown  color='#EBF2FA' size={30} onClick={() => {setDisplayMenu(!displayMenu)}}/> : <FiChevronUp  color='#EBF2FA' size={30} onClick={() => {setDisplayMenu(!displayMenu)}}/>}
           </li>
-          <li>
+          <DisplayLi>
             {displayMenu &&
-              <ul>
+              <FlexivelMenu>
                 <li>
                   <Link to='/home'>Home</Link>
                 </li>
@@ -31,17 +41,14 @@ export default function Header() {
                 <li>
                   <button onClick={deslogar}>Sair</button>
                 </li>
-              </ul>
+              </FlexivelMenu>
             }
-          </li>
-          <li>@{user.name}</li>
-          <li>
-            {user.avatarUrl === null ? <FiUser color='#EBF2FA' size={30}/> : <img src={user.avatarUrl} alt='imagem perfil'/>}
-          </li>
+          </DisplayLi>
+          
         </ul> 
         
-      </nav>
-    </header>
+      </Menu>
+    </HeaderContainer>
 
   );
 }

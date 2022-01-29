@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useContext, useCallback } from 'react';
+import React, { useState, useContext, useCallback, useEffect } from 'react';
 import { FiX } from 'react-icons/fi';
 import { AuthContext } from '../../contexts/auth';
 import { db } from '../../services/firebaseConnection';
-import { updateDoc, doc, getDocs, deleteDoc, collection } from 'firebase/firestore';
+import { updateDoc, doc, deleteDoc } from 'firebase/firestore';
 
 import Header from '../../components/Header';
 import Modal from '../../components/Modal';
@@ -14,20 +14,12 @@ export default function Home() {
   const [modal, setModal] = useState(false);
   const [modalEdit, setModalEdit] = useState(false);
   const [nameList, setNameList] = useState('');
-  const {user, list, updateState} = useContext(AuthContext);
+  const { list, loading } = useContext(AuthContext);
 
-  // Pegando as to-do lists
   useEffect(() => {
-    async function loadNotes(){
-      await getDocs(collection(db, 'lists')).then((snapshot) => {
-        updateState(snapshot);
-      })
-    }
-
-    loadNotes()
-  }, [updateState, user.uid])
-
-
+    loading();
+  }, [loading])
+  
   // Removendo um item na lista
   const deleteItem = useCallback((idName, item) => {
     async function deleteProp(idName, item){
@@ -38,21 +30,24 @@ export default function Home() {
       await updateDoc(doc(db, 'lists', idName), {
         itens: values[0]
       });
+
+      loading();
     }
 
     deleteProp(idName, item);
 
-  }, [list]);
+  }, [list, loading]);
 
   // Deletando a lista
   const deleteList = useCallback((list) => {
     async function deleteListName(list){
       await deleteDoc(doc(db, 'lists', list));
       alert('Lista apagada com sucesso!');
+      loading();
     }
 
     deleteListName(list);
-  }, []);
+  }, [loading]);
 
   // Atualizando o modal
   const modalForm = useCallback((name) => {

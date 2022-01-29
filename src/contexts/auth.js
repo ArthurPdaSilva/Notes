@@ -1,6 +1,6 @@
 import { db, auth } from '../services/firebaseConnection';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { setDoc, getDoc, doc } from 'firebase/firestore';
+import { setDoc, getDoc, doc, collection, getDocs } from 'firebase/firestore';
 import { createContext, useEffect, useState } from 'react';
 
 export const AuthContext = createContext({});
@@ -12,13 +12,13 @@ export default function AuthProvider({children}){
     const [loadingAuth, setLoadingAuth] = useState(false);
 
     useEffect(() => {
-    function storageUser(){
-        const isUser = localStorage.getItem('user');
-        if(isUser){
-            setUser(JSON.parse(isUser));
+        function storageUser(){
+            const isUser = localStorage.getItem('user');
+            if(isUser){
+                setUser(JSON.parse(isUser));
+            }
         }
-    }
-    storageUser()
+        storageUser()
     }, [])
 
 //  Cadastrando usuário
@@ -100,18 +100,21 @@ export default function AuthProvider({children}){
         setUser(null);
     }
 
-    function updateState(snapshot){
-        let lista = []
-        snapshot.forEach((doc) => {
-            lista.push({
-            idUser: doc.data().idUser,
-            nameList: doc.data().nameList,
-            itens: doc.data().itens
+    async function loading(){
+        await getDocs(collection(db, 'lists')).then((snapshot) => {
+            let lista = []
+            snapshot.forEach((doc) => {
+                lista.push({
+                idUser: doc.data().idUser,
+                nameList: doc.data().nameList,
+                itens: doc.data().itens
+                })
             })
+        
+            setList(lista.filter((item) => item.idUser === user.uid));
         })
-
-        setList(lista.filter((item) => item.idUser === user.uid));
     }
+
 
     return(
         <AuthContext.Provider 
@@ -119,8 +122,7 @@ export default function AuthProvider({children}){
         setUser, loadingAuth, 
         signUp, storageUser, login, 
         signOut, handlePasswordVisible, 
-        typePassword, list, setList, 
-        updateState, deslogar}}>
+        typePassword, list, setList, deslogar, loading}}>
             {children}
         </AuthContext.Provider>
     )
