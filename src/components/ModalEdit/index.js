@@ -6,6 +6,7 @@ import { FiPlus, FiX } from 'react-icons/fi';
 import { ButtonAdd } from '../../pages/Home/stylesHome';
 // import './modalEdit.css';
 import { AddList, CreateContainer, ItensTop, ListaAdd, ModalComponet } from '../Modal/stylesModal';
+import { toast } from 'react-toastify';
 
 export default function ModalEdit({nameItem, setNameItem, modal, setModal}) {
 
@@ -21,7 +22,7 @@ export default function ModalEdit({nameItem, setNameItem, modal, setModal}) {
             let values = listaItens.map((el) => el.itens);
             const hasItem = values[0].find((item) => item === newItem);
             if(hasItem){
-                alert("Item já se encontra na lista!");
+                toast.error("Item já se encontra na lista!");
                 return;
             }else{
                 setVisibleItem(!visibleItem);
@@ -40,7 +41,7 @@ export default function ModalEdit({nameItem, setNameItem, modal, setModal}) {
 
     const changeList = useCallback(() => {
         async function change(){
-            alert('Lista Atualizada com sucesso!');
+            toast.success('Lista Atualizada com sucesso!');
             setValueName('');
             setModal(!modal);
         }

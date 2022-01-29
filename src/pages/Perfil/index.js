@@ -8,6 +8,7 @@ import { Profile, FormUser, Avatar, InputDesativado } from './stylesProfile';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db, storage } from '../../services/firebaseConnection';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { toast } from 'react-toastify';
 
 export default function Perfil() {
   const {user, setUser, storageUser} = useContext(AuthContext);
@@ -20,7 +21,7 @@ export default function Perfil() {
     async function update(){
       const storageRef = ref(storage, `images/${user.uid}/${imageAvatar.name}`);
       await uploadBytesResumable(storageRef, imageAvatar).then(() => {
-        alert("Imagem enviada com sucesso");
+        toast.success("Imagem enviada com sucesso");
       }).catch(error => console.log(error));
 
       await getDownloadURL(storageRef).then(async(url) => {
@@ -59,12 +60,12 @@ export default function Perfil() {
           setUser(data);
           storageUser(data)
         }).catch(error => console.log(error));
-        alert('Trocado com sucesso!');
+        toast.success('Trocado com sucesso!');
       }else if(nome !== '' && imageAvatar !== null){
         handleChange();
-        alert('Trocado com sucesso!');
+        toast.success('Trocado com sucesso!');
       }else{
-        alert('Faça alguma coisas ou volte para a home!');
+        toast.info('Faça alguma coisas ou volte para a home!');
       }
     }
 
@@ -79,8 +80,8 @@ export default function Perfil() {
               setImageAvatar(image);
               setAvatarUrl(URL.createObjectURL(image));
           }else{
-              alert('Envie uma imagem válida!');
-              return null;
+            toast.info('Envie uma imagem válida!');
+            return null;
           }
       }
     }

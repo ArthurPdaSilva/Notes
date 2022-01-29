@@ -2,6 +2,7 @@ import { db, auth } from '../services/firebaseConnection';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { setDoc, getDoc, doc, collection, getDocs } from 'firebase/firestore';
 import { createContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 export const AuthContext = createContext({});
 
@@ -43,10 +44,10 @@ export default function AuthProvider({children}){
 
                 setUser(data);
                 storageUser(data);
-                alert('Bem Vindo');
+                toast.success('Bem Vindo a plataforma!');
 
             }).catch((error) => {
-                console.log(error);
+                toast.error(error);
             })
         })
 
@@ -71,10 +72,10 @@ export default function AuthProvider({children}){
 
             setUser(data);
             storageUser(data);
-            alert('Bem Vindo');
+            toast.success('Bem Vindo');
 
         }).catch((error) => {
-            console.log(error);
+            toast.error(error);
             
         })
 
@@ -94,8 +95,8 @@ export default function AuthProvider({children}){
     }
 
     async function deslogar(){
+        toast.success('Saindo da plataforma...');
         await signOut(auth);
-        alert('Saindo...');
         localStorage.removeItem('user');
         setUser(null);
     }

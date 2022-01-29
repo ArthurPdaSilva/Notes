@@ -3,6 +3,7 @@ import { FiX } from 'react-icons/fi';
 import { AuthContext } from '../../contexts/auth';
 import { db } from '../../services/firebaseConnection';
 import { updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import { toast } from 'react-toastify';
 
 import Header from '../../components/Header';
 import Modal from '../../components/Modal';
@@ -42,7 +43,7 @@ export default function Home() {
   const deleteList = useCallback((list) => {
     async function deleteListName(list){
       await deleteDoc(doc(db, 'lists', list));
-      alert('Lista apagada com sucesso!');
+      toast.success('Lista apagada com sucesso!');
       loading();
     }
 

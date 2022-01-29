@@ -5,6 +5,7 @@ import { db } from '../../services/firebaseConnection';
 import { doc, setDoc } from 'firebase/firestore';
 import { ButtonAdd } from '../../pages/Home/stylesHome';
 import { CreateContainer, ModalComponet, ItensTop, ListaAdd, AddList, ListaValores } from './stylesModal';
+import { toast } from 'react-toastify';
 
 export default function Modal({modal, setModal}) {
 
@@ -19,7 +20,7 @@ export default function Modal({modal, setModal}) {
       //Verificando se a lista já tem esse valor:
       const hasItem = list.find((name) => name === item);
       if(hasItem){
-        alert("Item já se encontra na lista!");
+        toast.error("Item já se encontra na lista!");
       }else{
         setList(oldValue => [...oldValue, item]);
       }
@@ -34,10 +35,10 @@ export default function Modal({modal, setModal}) {
   const handleDone = useCallback(() => {
     async function handle(){
       if(nameList === '' || list === ''){
-        alert('Preencha todos os campos');
+        toast.error('Preencha todos os campos');
         return;
       }else{
-        alert('Lista cadastrada com sucesso')
+        toast.success('Lista cadastrada com sucesso!');
         await setDoc(doc(db, 'lists', nameList), {
           idUser: user.uid,
           nameList: nameList,
@@ -45,7 +46,7 @@ export default function Modal({modal, setModal}) {
         }).then(() => {
           setModal(!modal);
         }).catch((error) => {
-          console.log(error)
+          toast.error(error);
           return;
         })
         
