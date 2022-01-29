@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './error.css';
+import { ErrorContainer } from './stylesError.js';
 
 export default function Error() {
 
@@ -13,13 +13,13 @@ export default function Error() {
   }, [history])
 
   return (
-    <div className='errorContainer'>
-        <h1>ERROR</h1>
+    <ErrorContainer>
+        <h1>404</h1>
         <p>
           Infelizmente, a página que você está tentando acessar, ela não existe.
           O redirecionaremos para a página inicial será em 5 segundos.
         </p>
-    </div>
+    </ErrorContainer>
   );
 
 }

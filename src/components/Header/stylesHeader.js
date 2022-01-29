@@ -56,3 +56,9 @@ export const DisplayLi = styled.li`
         background-color: var(--corPrincipal);
     }
 `;
+
+export const AvatarImagem = styled.img`
+    height: 30px;
+    width: 30px;
+    border-radius: 10px;
+`;

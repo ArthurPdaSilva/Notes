@@ -21,8 +21,10 @@ export const FormUser = styled.form`
 
     img{
         display: flex;
-        border-radius: 50%;
+        border-radius: 25%;
         object-fit: cover;
+        max-width: 230px;
+        min-height: 190px;
     }
 
     input{

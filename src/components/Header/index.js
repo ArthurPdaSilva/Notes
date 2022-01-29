@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import {AuthContext} from '../../contexts/auth';
 import { FiChevronDown, FiChevronUp, FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { HeaderContainer, Menu, FlexivelMenu, DisplayLi } from './stylesHeader';
+import { HeaderContainer, Menu, FlexivelMenu, DisplayLi, AvatarImagem } from './stylesHeader';
 
 export default function Header() {
 
@@ -23,7 +23,7 @@ export default function Header() {
             <Link to='/perfil'>
               {user.avatarUrl === null ? 
               <FiUser color='#EBF2FA' size={30}/> : 
-              <img src={user.avatarUrl} alt='imagem perfil'/>}
+              <AvatarImagem src={user.avatarUrl} alt='imagem perfil'/>}
             </Link>
           </li>
           <li>
