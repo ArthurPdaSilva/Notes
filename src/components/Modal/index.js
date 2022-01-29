@@ -4,7 +4,7 @@ import { FiPlus, FiX } from 'react-icons/fi';
 import { db } from '../../services/firebaseConnection';
 import { doc, setDoc } from 'firebase/firestore';
 import { ButtonAdd } from '../../pages/Home/stylesHome';
-import './modal.css';
+import { CreateContainer, ModalComponet, ItensTop, ListaAdd, AddList, ListaValores } from './stylesModal';
 
 export default function Modal({modal, setModal}) {
 
@@ -44,37 +44,37 @@ export default function Modal({modal, setModal}) {
   }
 
   return (
-    <div className='modalContainer'>
-      <div className='modal'>
-        <div className="itensTop">
+    <CreateContainer>
+      <ModalComponet>
+        <ItensTop>
           <h2>Nova lista</h2>
           <button onClick={() => {setModal(!modal)}}>
             <FiX color='#2B303A' size={30}/>
           </button>
-        </div>
-        <div className='listaAdd'>
+        </ItensTop>
+        <ListaAdd>
           <input type='text' value={nameList} onChange={(e) => {setNameList(e.target.value)}} placeholder='Qual é o nome da lista?'/>
-          <div className="addList">
+          <AddList>
             <input type='text' value={item} ref={field} placeholder='Digite o item' onChange={(e) => {setItem(e.target.value)}}/>
             <button className='plusButton' onClick={addItens}><FiPlus color='white' size={30}/></button>
-          </div>
+          </AddList>
           <ul>
             {list.map((item) => {
               return(
                 <ul key={item}>
-                  <li className='listaValores'>
+                  <ListaValores>
                     <span>{item}</span>
                     <FiX color='#2B303A' size={20} onClick={() => {
                       setList(list.filter(el => el !== item))
                     }}/>
-                  </li>
+                  </ListaValores>
                 </ul>
               )
             })}
           </ul>
           <ButtonAdd onClick={handleDone}>Concluido</ButtonAdd>
-        </div>
-      </div>
-    </div>
+        </ListaAdd>
+      </ModalComponet>
+    </CreateContainer>
   );
   }

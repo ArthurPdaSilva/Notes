@@ -35,7 +35,9 @@ export default function Header() {
             }
           </li>
           <li>@{user.name}</li>
-          <li><FiUser color='#EBF2FA' size={30}/></li>
+          <li>
+            {user.avatarUrl === null ? <FiUser color='#EBF2FA' size={30}/> : <img src={user.avatarUrl} alt='imagem perfil'/>}
+          </li>
         </ul> 
         
       </nav>

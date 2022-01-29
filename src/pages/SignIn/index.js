@@ -2,7 +2,7 @@ import React, { useState, useContext, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth';
 import { FiLock, FiEye, FiEyeOff, FiMail, FiXCircle } from 'react-icons/fi';
-import { Login, LoginContainer, Form, InputGroup } from './stylesLogin.js';
+import { Login, LoginContainer, Form, InputGroup } from './stylesLogin';
 
 export default function SignIn() {
   

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {FiUser, FiLock, FiEye, FiEyeOff, FiMail, FiMoreVertical, FiXCircle} from 'react-icons/fi';
 import {AuthContext} from '../../contexts/auth';
 import { Login, LoginContainer, Form, InputGroup } from '../SignIn/stylesLogin.js';
-import { FieldCamps, OptionsCamp } from './stylesRegister.js';
+import { FieldCamps, OptionsCamp } from './stylesRegister';
 
 export default function SignIn() {
 

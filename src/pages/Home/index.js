@@ -7,7 +7,7 @@ import { updateDoc, doc, getDocs, deleteDoc, collection } from 'firebase/firesto
 import Header from '../../components/Header';
 import Modal from '../../components/Modal';
 import ModalEdit from '../../components/ModalEdit';
-import { Container, MainContainer, Title, Section, ModalContainer, ContainerItens, ButtonAdd, TopContainer, Footer } from'./stylesHome.js';
+import { Container, MainContainer, Title, Section, ModalContainer, ContainerItens, ButtonAdd, TopContainer, Footer } from'./stylesHome';
 
 export default function Home() {
   
@@ -67,7 +67,7 @@ export default function Home() {
       <MainContainer>
         <Title>
           <h2>Anotações</h2>
-          <small>Crie to-do lists ou anotações convencionais / Não faça listas com nomes repetidos!</small>
+          <small>Crie to-do lists ou anotações convencionais</small>
         </Title> 
 
         <Section>

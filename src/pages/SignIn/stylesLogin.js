@@ -24,6 +24,7 @@ export const LoginContainer = styled.div`
     a{
         color: var(--corPrincipal);
         font-size: 1.2rem;
+        margin-bottom: 10px;
     }
 
 
@@ -47,7 +48,7 @@ export const Form = styled.form`
         border-radius: var(--borderRadius);
         font-weight: bold;
         font-size: 1.5rem;
-        min-width: 35vw;
+        min-width: 20vw;
     }
 `;
 
@@ -56,7 +57,7 @@ export const InputGroup = styled.div`
     flex-direction: row;
     input{
         border: none;
-        width: 30vw;
+        min-width: 20vw;
         background-color: var(--corSecundaria);
         padding: var(--padding);
         font-size: 1rem;

@@ -4,7 +4,6 @@ import { updateDoc, doc, getDocs, collection } from 'firebase/firestore';
 import { AuthContext } from '../../contexts/auth';
 import { FiPlus, FiX } from 'react-icons/fi';
 import { ButtonAdd } from '../../pages/Home/stylesHome';
-import './stylesModal.js';
 import './modalEdit.css';
 
 export default function ModalEdit({nameItem, setNameItem, modal, setModal}) {
@@ -55,11 +54,8 @@ export default function ModalEdit({nameItem, setNameItem, modal, setModal}) {
                 </button>
             </div>
             <div className='listContainer'>
-                <label>Nome da Lista:</label>
-                <input type='text' value={valueName} onChange={(e) => setValueName(e.target.value)} placeholder='cu'/>
-
                 <div className='add'>
-                    <input type='text' value={newItem} onChange={(e) => setNewItem(e.target.value)}/>
+                    <input type='text' placeholder='Adicionar novo item' value={newItem} onChange={(e) => setNewItem(e.target.value)}/>
                     <FiPlus color='white' size={30} onClick={addItem}/>
                 </div>       
 
