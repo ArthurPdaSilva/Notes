@@ -3,7 +3,9 @@ import { AuthContext } from '../../contexts/auth';
 import { FiUpload } from 'react-icons/fi';
 import Header from '../../components/Header';
 import avatar from '../../assets/avatar.png';
-import './perfil.css';
+import { ButtonAdd, Container } from '../Home/stylesHome';
+import { Profile, FormUser, Avatar, InputDesativado } from './stylesProfile';
+// import './perfil.css';
 
 export default function Perfil() {
   
@@ -15,31 +17,29 @@ export default function Perfil() {
   const [imageAvatar, setImageAvatar] = useState(null);
 
   return (
-    <div className='all'>
+    <Container>
       <Header/>
-      <div className='perfil'>
+      <Profile>
         <h1>Meu Perfil</h1>
-        <form className='formProfile' onSubmit={() => {}}>
-          <label className="label-avatar">
+        <FormUser onSubmit={() => {}}>
+
+          <Avatar>
             <span>
               <FiUpload color="#FFF" size={25} />
             </span>
             <input type='file' accept='image/*' onChange={() => {}}/>
             {avatarUrl == null ?
-                <img src={avatar} width="250" height="250" alt="Foto de perfil do usuario" />
+                <img src={avatar} alt="Foto de perfil do usuario" />
                 :
-                <img src={avatarUrl} width="250" height="250" alt="Foto de perfil do usuario" />}
-          </label>
+                <img src={avatarUrl} alt="Foto de perfil do usuario" />}
+          </Avatar>
 
-          <label>Nome</label>
           <input type='text' value={nome} onChange={(e) => setNome(e.target.value)}/>
-          
-          <label>Email</label>
-          <input type='text' value={email} disabled={true}/>
+          <InputDesativado value={email} disabled={true}/>
 
-          <button type='submit'>Salvar</button>
-        </form>
-      </div>
-    </div>
+          <ButtonAdd type='submit'>Salvar</ButtonAdd>
+        </FormUser>
+      </Profile>
+    </Container>
   );
 }
