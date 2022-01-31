@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { Navigate, Outlet} from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { AuthContext } from "../contexts/auth";
 
-export default function PublicRoutes(){
+export default function PublicRoutes({children}){
     const {signed } = useContext(AuthContext);
-    return !signed ? <Outlet/> : <Navigate to="/home"/>
+    return !signed ? children : <Navigate to="/home"/>
 }
