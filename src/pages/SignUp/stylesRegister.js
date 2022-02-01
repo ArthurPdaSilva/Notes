@@ -5,6 +5,15 @@ export const FieldCamps = styled.fieldset`
     align-items: center;
     padding: var(--padding);
     width: 15vw;
+    
+    @media(max-width: 600px){
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        width: 50vw;
+        padding: 0;
+    }
+
 `;
 
 export const OptionsCamp = styled.div`
@@ -16,6 +25,12 @@ export const OptionsCamp = styled.div`
 
     label{
         cursor: pointer;
+    }
+
+    @media(max-width: 600px){
+        label{
+            font-size: 1.2em;
+        }
     }
 
 `;

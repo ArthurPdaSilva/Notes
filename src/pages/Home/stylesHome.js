@@ -18,6 +18,10 @@ export const MainContainer = styled.main`
 export const Title = styled.div`
     font-size: 1.2rem;
     color: var(--corBranca);
+
+    @media(max-width: 600px){
+        font-size: 2rem;
+    }
 `;
 
 export const Section = styled.section`
@@ -27,6 +31,10 @@ export const Section = styled.section`
     width: 100%;
     padding: var(--padding);
     margin: calc(var(--margin) + 10px) 10px 0 0;
+
+    @media(max-width: 600px){
+        flex-direction: column;
+    }
 `;
 
 export const ModalContainer = styled.div`
@@ -90,5 +98,9 @@ export const ButtonAdd = styled.button`
 
     &:hover{
         background-color: rgb(67, 193, 153);
+    }
+
+    @media(max-width: 600px){
+        font-size: 2em;
     }
 `;

@@ -22,6 +22,12 @@ export const ModalComponet = styled.div`
     box-shadow: var(--shadow);
     min-height: 60vh;
     min-width: 25vw;
+
+    @media(max-width: 600px){
+        min-width: 80vw;
+        border-radius: 0;
+    }
+
 `;
 
 export const ItensTop = styled.div`
@@ -53,6 +59,13 @@ export const ListaAdd = styled.div`
         border-top-left-radius: var(--borderRadius);
         border-bottom-left-radius: var(--borderRadius);
     }
+
+    @media(max-width: 600px){
+        
+        input{
+            font-size: 2em;
+        }
+    }
 `;
 
 export const AddList = styled.div`
@@ -65,6 +78,17 @@ export const AddList = styled.div`
         padding: calc(var(--padding) - 4.5px);
         border-top-right-radius: var(--borderRadius);
         border-bottom-right-radius: var(--borderRadius);
+    }
+
+    @media(max-width: 600px){
+        
+        input{
+            flex: 1;
+        }
+
+        button{
+            padding: 1.3em;
+        }
     }
 `
 

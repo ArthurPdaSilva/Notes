@@ -6,6 +6,7 @@ export const Login = styled.div`
     justify-content: center;
     min-height: 100vh;
     width: 100%;
+    
 `;
 
 export const LoginContainer = styled.div`
@@ -25,6 +26,13 @@ export const LoginContainer = styled.div`
         color: var(--corPrincipal);
         font-size: 1.2rem;
         margin-bottom: 10px;
+    }
+
+    @media(max-width: 600px){
+        min-height: 30vh;
+        max-height: 70vh;
+        padding: 0;
+
     }
 
 
@@ -50,11 +58,22 @@ export const Form = styled.form`
         font-size: 1.5rem;
         min-width: 20vw;
     }
+
+    @media(max-width: 600px){
+        gap: 10px;
+
+        & > button{
+            min-width: 60vw;
+        }
+        
+    }
 `;
 
 export const InputGroup = styled.div`
     display: flex;
     flex-direction: row;
+
+    
     input{
         border: none;
         min-width: 20vw;
@@ -66,7 +85,7 @@ export const InputGroup = styled.div`
             color: var(--corPrincipal);
         }
     }
-
+    
     label{
         display: flex;
         align-items: center;
@@ -83,4 +102,11 @@ export const InputGroup = styled.div`
         border-top-right-radius: var(--borderRadius);
         border-bottom-right-radius: var(--borderRadius);
     }
+    @media(max-width: 600px){
+        input{
+            font-size: 1.4em;
+            max-width: 40vw;
+        }
+    }
+
 `;

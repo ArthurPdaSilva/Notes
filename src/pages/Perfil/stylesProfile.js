@@ -5,12 +5,16 @@ export const Profile = styled.div`
     align-items: center;
     flex-direction: column;
     background-color: var(--corBranca);
-    width: 30vw;
+    min-width: 30vw;
     margin: 20px auto;
     padding: var(--padding);
-    min-height: 80vh;
     border-radius: var(--borderRadius);
     box-shadow: var(--shadow);
+
+    @media(max-width: 600px){
+        margin: 100px auto;
+        padding: 2em;
+    }
 `;
 
 export const FormUser = styled.form`
@@ -38,10 +42,14 @@ export const FormUser = styled.form`
         &::placeholder{
             color: var(--corPrincipal);
         }
+
+        @media(max-width: 600px){
+            font-size: 1.2rem;
+        }
     }
 
     button{
-        width: 20vw;
+        min-width: 20vw;
     }
 
 `;
