@@ -6,7 +6,6 @@ export const Login = styled.div`
     justify-content: center;
     min-height: 100vh;
     width: 100%;
-    
 `;
 
 export const LoginContainer = styled.div`
@@ -29,9 +28,8 @@ export const LoginContainer = styled.div`
     }
 
     @media(max-width: 600px){
-        min-height: 30vh;
-        padding: 0;
-
+        min-height: 40vh;
+        padding: 10px;
     }
 
 
