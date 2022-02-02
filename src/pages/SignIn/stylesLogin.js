@@ -29,7 +29,7 @@ export const LoginContainer = styled.div`
 
     @media(max-width: 600px){
         min-height: 40vh;
-        padding: 10px;
+        padding: var(--padding);
     }
 
 
