@@ -1,6 +1,6 @@
 import { db, auth } from '../services/firebaseConnection';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { setDoc, getDoc, doc, collection, getDocs } from 'firebase/firestore';
+import { setDoc, getDoc, doc, collection, getDocs } from 'firebase/firestore'
 import { createContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -66,7 +66,6 @@ export default function AuthProvider({children}){
                 name: userProfile.data().name,
                 avatarUrl: userProfile.data().avatarUrl, 
                 email: userProfile.data().email,
-                password: userProfile.data().password,
                 gender: userProfile.data().gender
             }
 

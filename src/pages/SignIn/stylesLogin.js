@@ -99,6 +99,7 @@ export const InputGroup = styled.div`
         border-top-right-radius: var(--borderRadius);
         border-bottom-right-radius: var(--borderRadius);
     }
+    
     @media(max-width: 600px){
         input{
             font-size: 1.4em;
